@@ -26,12 +26,12 @@ jobs:
 
     - name: Compile and Link C++ App (cl.exe)
       run: |
-        cl /O1 /GL /Gy /MD /DNDEBUG main.cpp /link /SUBSYSTEM:WINDOWS /LTCG /OPT:REF /OPT:ICF USER32.LIB GDI32.LIB GDIPLUS.LIB WINMM.LIB resource.res /OUT:IQ.exe
+        cl /O1 /GL /Gy /MD /DNDEBUG main.cpp /link /SUBSYSTEM:WINDOWS /LTCG /OPT:REF /OPT:ICF USER32.LIB GDI32.LIB GDIPLUS.LIB WINMM.LIB resource.res /OUT:Piano.exe
 
     - name: Create Official GitHub Release and Upload EXE
       uses: softprops/action-gh-release@v2
       with:
-        files: IQ.exe
+        files: Piano.exe
         name: Release ${{ github.ref_name }}
         tag_name: ${{ github.ref }}
       env:
