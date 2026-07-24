@@ -26,7 +26,7 @@ jobs:
 
     - name: Compile and Link C++ App (cl.exe)
       run: |
-        cl /O1 /analyze- /MT main.cpp resource.res /link /SUBSYSTEM:WINDOWS user32.lib gdi32.lib gdiplus.lib /OUT:IQ.exe
+        cl /O2 /GL /Gy /MD /DNDEBUG main.cpp resource.res /link /SUBSYSTEM:WINDOWS /LTCG /OPT:REF /OPT:ICF user32.lib gdi32.lib gdiplus.lib /OUT:IQ.exe
 
     - name: Create Official GitHub Release and Upload EXE
       uses: softprops/action-gh-release@v2
