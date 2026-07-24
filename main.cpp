@@ -48,7 +48,7 @@ const std::vector<ValidHit> VALID_HITS = {
 
 HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
     // Ищем по строке L"RCDATA" — это убирает любые конфликты типов у cl.exe и g++!
-    HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), L"RCDATA");
+    HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), L"UTKI");
     if (!hResource) return nullptr;
 
     DWORD imageSize = SizeofResource(hInst, hResource);
