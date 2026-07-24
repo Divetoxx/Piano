@@ -48,7 +48,7 @@ const std::vector<ValidHit> VALID_HITS = {
 
 HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
     // ИСПРАВЛЕНО: Теперь ищем тип по числу 256! Это самый надежный способ в WinAPI
-    HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), MAKEINTRESOURCEW(256));
+    HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), (LPCWSTR)RT_RCDATA);
     if (!hResource) return nullptr;
 
     DWORD imageSize = SizeofResource(hInst, hResource);
