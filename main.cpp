@@ -47,7 +47,7 @@ const std::vector<ValidHit> VALID_HITS = {
 };
 
 HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
-    // Ищем по строке L"RCDATA" — это убирает любые конфликты типов у cl.exe и g++!
+    // Числовой поиск по типу 10 (RCDATA)
     HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), MAKEINTRESOURCEW(10));
     if (!hResource) return nullptr;
 
@@ -56,22 +56,21 @@ HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
     if (!hGlob) return nullptr;
 
     void* pResourceData = LockResource(hGlob);
-    
-    // Создаем поток данных из памяти
     IStream* pStream = SHCreateMemStream((const BYTE*)pResourceData, imageSize);
     if (!pStream) return nullptr;
 
     HBITMAP hBitmap = nullptr;
-    Gdiplus::Bitmap* pBitmap = Gdiplus::Bitmap::FromStream(pStream);
-    if (pBitmap) {
-        pBitmap->GetHBITMAP(Gdiplus::Color(0,0,0), &hBitmap);
-        delete pBitmap;
-    }
+    Gdiplus::GpBitmap* gpBitmap = nullptr;
     
+    // ИСПРАВЛЕНО: Прямой вызов базовой функции GDI+ вместо капризного FromStream
+    if (Gdiplus::DllExports::GdipCreateBitmapFromStream(pStream, &gpBitmap) == Gdiplus::Ok && gpBitmap) {
+        Gdiplus::DllExports::GdipCreateHBITMAPFromBitmap(gpBitmap, &hBitmap, 0);
+        Gdiplus::DllExports::GdipDisposeImage((Gdiplus::GpImage*)gpBitmap);
+    }
+
     pStream->Release();
     return hBitmap;
 }
-
 
 void DrawFinalScoreGdiplus(HWND hwnd) {
     int score = (int)(splIq * 2) + 89;
