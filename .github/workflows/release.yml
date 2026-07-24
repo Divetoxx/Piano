@@ -1,14 +1,15 @@
-name: MSVC C++ Build
+name: MSVC C++ Build and Release
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    tags:
+      - "v*" # Скрипт будет срабатывать ТОЛЬКО когда вы отправляете тег (например, v2.8.0)
 
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: write # Даем GitHub право создавать релизы и загружать файлы
 
     steps:
     - name: Checkout repository code
@@ -27,8 +28,11 @@ jobs:
       run: |
         cl /O2 /MT main.cpp resource.res /link /SUBSYSTEM:WINDOWS user32.lib gdi32.lib gdiplus.lib /OUT:IQ.exe
 
-    - name: Upload Finished IQ.exe File
-      uses: actions/upload-artifact@v4
+    - name: Create Official GitHub Release and Upload EXE
+      uses: softprops/action-gh-release@v2
       with:
-        name: Finished-IQ-Test
-        path: IQ.exe
+        files: IQ.exe
+        name: Release ${{ github.ref_name }}
+        tag_name: ${{ github.ref }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
