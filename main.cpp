@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include <shlwapi.h>
 
 #pragma comment(lib, "gdiplus.lib")
 #pragma comment(lib, "winmm.lib")
@@ -46,29 +45,17 @@ const std::vector<ValidHit> VALID_HITS = {
     {7008, {3, 6, 13, 16, 21}}
 };
 
-HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
-    // Числовой поиск по типу 10 (RCDATA)
-    HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), MAKEINTRESOURCEW(10));
-    if (!hResource) return nullptr;
-
-    DWORD imageSize = SizeofResource(hInst, hResource);
-    HGLOBAL hGlob = LoadResource(hInst, hResource);
-    if (!hGlob) return nullptr;
-
-    void* pResourceData = LockResource(hGlob);
-    IStream* pStream = SHCreateMemStream((const BYTE*)pResourceData, imageSize);
-    if (!pStream) return nullptr;
-
+HBITMAP LoadPngFromDiskSafe(const wchar_t* filename) {
     HBITMAP hBitmap = nullptr;
-    Gdiplus::GpBitmap* gpBitmap = nullptr;
-    
-    // ИСПРАВЛЕНО: Прямой вызов базовой функции GDI+ вместо капризного FromStream
-    if (Gdiplus::DllExports::GdipCreateBitmapFromStream(pStream, &gpBitmap) == Gdiplus::Ok && gpBitmap) {
-        Gdiplus::DllExports::GdipCreateHBITMAPFromBitmap(gpBitmap, &hBitmap, 0);
-        Gdiplus::DllExports::GdipDisposeImage((Gdiplus::GpImage*)gpBitmap);
+    // Используем официальный объект класса Gdiplus
+    Gdiplus::Bitmap* pBitmap = Gdiplus::Bitmap::FromFile(filename);
+    if (pBitmap) {
+        if (pBitmap->GetLastStatus() == Gdiplus::Ok) {
+            // Конвертируем в стандартный HBITMAP для отрисовки
+            pBitmap->GetHBITMAP(Gdiplus::Color(0,0,0), &hBitmap);
+        }
+        delete pBitmap; // Обязательно очищаем память
     }
-
-    pStream->Release();
     return hBitmap;
 }
 
@@ -226,7 +213,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     Gdiplus::GdiplusStartupInput gpInput;
     Gdiplus::GdiplusStartup(&gpToken, &gpInput, nullptr);
 
-    hBigSprite = LoadPngFromResource(hInstance, 200);
+    hBigSprite = LoadPngFromDiskSafe(L"utki.png");
+    if (!hBigSprite) {
+    MessageBoxW(nullptr, L"Файл utki.png не найден!", L"Ошибка", MB_OK | MB_ICONERROR);
+    return 0;
+}
 
     hBru = CreateSolidBrush(RGB(255, 255, 255));
 
