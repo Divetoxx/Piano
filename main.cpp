@@ -47,8 +47,8 @@ const std::vector<ValidHit> VALID_HITS = {
 };
 
 HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
-    // ИСПРАВЛЕНО: Теперь ищем тип по числу 256! Это самый надежный способ в WinAPI
-    HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), (LPCWSTR)RT_RCDATA);
+    // Ищем по строке L"RCDATA" — это убирает любые конфликты типов у cl.exe и g++!
+    HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), L"RCDATA");
     if (!hResource) return nullptr;
 
     DWORD imageSize = SizeofResource(hInst, hResource);
@@ -57,7 +57,7 @@ HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
 
     void* pResourceData = LockResource(hGlob);
     
-    // Создаем поток данных напрямую из памяти
+    // Создаем поток данных из памяти
     IStream* pStream = SHCreateMemStream((const BYTE*)pResourceData, imageSize);
     if (!pStream) return nullptr;
 
