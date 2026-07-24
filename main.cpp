@@ -47,7 +47,7 @@ const std::vector<ValidHit> VALID_HITS = {
 };
 
 HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
-    // Ищем наш тип BINARY
+    // Находим ресурс типа BINARY
     HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), L"BINARY");
     if (!hResource) return nullptr;
 
@@ -56,27 +56,20 @@ HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
     if (!hGlob) return nullptr;
 
     void* pResourceData = LockResource(hGlob);
-    HGLOBAL hBuffer = GlobalAlloc(GMEM_MOVEABLE, imageSize);
-    if (!hBuffer) return nullptr;
-
-    void* pBuffer = GlobalLock(hBuffer);
-    memcpy(pBuffer, pResourceData, imageSize);
-    GlobalUnlock(hBuffer);
-
-    IStream* pStream = nullptr;
-    CreateStreamOnHGlobal(hBuffer, TRUE, &pStream);
-
-    Gdiplus::GpBitmap* gpBitmap = nullptr;
-    if (pStream) {
-        Gdiplus::DllExports::GdipCreateBitmapFromStream(pStream, &gpBitmap);
-        pStream->Release();
-    }
+    
+    // Создаем поток чтения прямо из памяти ресурсов (без ручного копирования памяти!)
+    IStream* pStream = SHCreateMemStream((const BYTE*)pResourceData, imageSize);
+    if (!pStream) return nullptr;
 
     HBITMAP hBitmap = nullptr;
-    if (gpBitmap) {
-        Gdiplus::DllExports::GdipCreateHBITMAPFromBitmap(gpBitmap, &hBitmap, 0);
-        Gdiplus::DllExports::GdipDisposeImage((Gdiplus::GpImage*)gpBitmap);
+    // Используем стандартный класс Gdiplus::Bitmap вместо DllExports
+    Gdiplus::Bitmap* pBitmap = Gdiplus::Bitmap::FromStream(pStream);
+    if (pBitmap) {
+        pBitmap->GetHBITMAP(Gdiplus::Color(0,0,0), &hBitmap);
+        delete pBitmap;
     }
+    
+    pStream->Release();
     return hBitmap;
 }
 
