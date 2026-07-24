@@ -47,7 +47,8 @@ const std::vector<ValidHit> VALID_HITS = {
 };
 
 HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
-    HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), (LPCWSTR)RT_RCDATA);
+    // ИСПРАВЛЕНО: Используем FindResource вместо FindResourceW, чтобы убрать ошибку типов
+    HRSRC hResource = FindResource(hInst, MAKEINTRESOURCE(resId), RT_RCDATA);
     if (!hResource) return nullptr;
 
     DWORD imageSize = SizeofResource(hInst, hResource);
@@ -56,12 +57,11 @@ HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
 
     void* pResourceData = LockResource(hGlob);
     
-    // Создаем поток чтения прямо из памяти ресурсов (без ручного копирования памяти!)
+    // Создаем поток данных напрямую из ресурсов памяти
     IStream* pStream = SHCreateMemStream((const BYTE*)pResourceData, imageSize);
     if (!pStream) return nullptr;
 
     HBITMAP hBitmap = nullptr;
-    // Используем стандартный класс Gdiplus::Bitmap вместо DllExports
     Gdiplus::Bitmap* pBitmap = Gdiplus::Bitmap::FromStream(pStream);
     if (pBitmap) {
         pBitmap->GetHBITMAP(Gdiplus::Color(0,0,0), &hBitmap);
