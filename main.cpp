@@ -46,15 +46,34 @@ const std::vector<ValidHit> VALID_HITS = {
     {7008, {3, 6, 13, 16, 21}}
 };
 
-HBITMAP LoadPngFromDisk(const wchar_t* filename) {
+HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
+    // Ищем наш тип BINARY
+    HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), L"BINARY");
+    if (!hResource) return nullptr;
+
+    DWORD imageSize = SizeofResource(hInst, hResource);
+    HGLOBAL hGlob = LoadResource(hInst, hResource);
+    if (!hGlob) return nullptr;
+
+    void* pResourceData = LockResource(hGlob);
+    HGLOBAL hBuffer = GlobalAlloc(GMEM_MOVEABLE, imageSize);
+    if (!hBuffer) return nullptr;
+
+    void* pBuffer = GlobalLock(hBuffer);
+    memcpy(pBuffer, pResourceData, imageSize);
+    GlobalUnlock(hBuffer);
+
+    IStream* pStream = nullptr;
+    CreateStreamOnHGlobal(hBuffer, TRUE, &pStream);
+
     Gdiplus::GpBitmap* gpBitmap = nullptr;
-    
-    // Загружаем файл с диска через GDI+
-    Gdiplus::DllExports::GdipCreateBitmapFromFile(filename, &gpBitmap);
+    if (pStream) {
+        Gdiplus::DllExports::GdipCreateBitmapFromStream(pStream, &gpBitmap);
+        pStream->Release();
+    }
 
     HBITMAP hBitmap = nullptr;
     if (gpBitmap) {
-        // Конвертируем в стандартный HBITMAP для BitBlt
         Gdiplus::DllExports::GdipCreateHBITMAPFromBitmap(gpBitmap, &hBitmap, 0);
         Gdiplus::DllExports::GdipDisposeImage((Gdiplus::GpImage*)gpBitmap);
     }
@@ -216,11 +235,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     Gdiplus::GdiplusStartupInput gpInput;
     Gdiplus::GdiplusStartup(&gpToken, &gpInput, nullptr);
 
-    hBigSprite = LoadPngFromDisk(L"Victor.png");
-    if (!hBigSprite) {
-        MessageBoxW(nullptr, L"Файл Victor.png не найден в папке с программой!", L"Ошибка", MB_OK | MB_ICONERROR);
-        return 0;
-    }
+    hBigSprite = LoadPngFromResource(H_INST, 200);
 
     hBru = CreateSolidBrush(RGB(255, 255, 255));
 
