@@ -47,8 +47,8 @@ const std::vector<ValidHit> VALID_HITS = {
 };
 
 HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
-    // ИСПРАВЛЕНО: Используем FindResource вместо FindResourceW, чтобы убрать ошибку типов
-    HRSRC hResource = FindResource(hInst, MAKEINTRESOURCE(resId), RT_RCDATA);
+    // Ищем ресурс по нашему текстовому типу L"PNG" — это уберёт любые ошибки типов!
+    HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), L"PNG");
     if (!hResource) return nullptr;
 
     DWORD imageSize = SizeofResource(hInst, hResource);
@@ -57,7 +57,7 @@ HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
 
     void* pResourceData = LockResource(hGlob);
     
-    // Создаем поток данных напрямую из ресурсов памяти
+    // Создаем поток данных напрямую из памяти
     IStream* pStream = SHCreateMemStream((const BYTE*)pResourceData, imageSize);
     if (!pStream) return nullptr;
 
