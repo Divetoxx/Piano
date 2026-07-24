@@ -235,7 +235,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     Gdiplus::GdiplusStartupInput gpInput;
     Gdiplus::GdiplusStartup(&gpToken, &gpInput, nullptr);
 
-    hBigSprite = LoadPngFromResource(H_INST, 200);
+    hBigSprite = LoadPngFromResource(hInstance, 200);
 
     hBru = CreateSolidBrush(RGB(255, 255, 255));
 
