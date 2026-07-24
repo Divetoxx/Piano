@@ -1,3 +1,3 @@
 1 ICON "IQ.ico"
 1 24 "app.manifest"
-200 BINARY "Victor.dat"
+200 RCDATA "Victor.dat"

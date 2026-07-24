@@ -47,8 +47,7 @@ const std::vector<ValidHit> VALID_HITS = {
 };
 
 HBITMAP LoadPngFromResource(HINSTANCE hInst, int resId) {
-    // Находим ресурс типа BINARY
-    HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), L"BINARY");
+    HRSRC hResource = FindResourceW(hInst, MAKEINTRESOURCEW(resId), (LPCWSTR)RT_RCDATA);
     if (!hResource) return nullptr;
 
     DWORD imageSize = SizeofResource(hInst, hResource);
