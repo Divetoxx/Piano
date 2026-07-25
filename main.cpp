@@ -184,11 +184,11 @@ void RenderUI(HWND hwnd, HDC hdc) {
 
     Gdiplus::Font subFont(&fontFamily, 26.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
     Gdiplus::RectF subRect(0.0f, 100.0f, 700.0f, 40.0f);
-    graphics.DrawString(L"Выберите мелодию:", -1, &subFont, subRect, &centerFormat, &darkBrush);
+    graphics.DrawString(L"Melodies:", -1, &subFont, subRect, &centerFormat, &darkBrush);
 
     Gdiplus::Font hintFont(&fontFamily, 24.0f, Gdiplus::FontStyleItalic, Gdiplus::UnitPixel);
     Gdiplus::RectF hintRect(0.0f, 650.0f, 700.0f, 40.0f);
-    graphics.DrawString(L"Подсказка: жмите ПРОБЕЛ", -1, &hintFont, hintRect, &centerFormat, &darkBrush);
+    graphics.DrawString(L"Hint: press SPACE", -1, &hintFont, hintRect, &centerFormat, &darkBrush);
 }
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
@@ -201,12 +201,12 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             for (const auto& m : melodies) SendMessageW(hCombo, CB_ADDSTRING, 0, (LPARAM)m.name.c_str());
             SendMessageW(hCombo, CB_SETCURSEL, 0, 0);
 
-            HWND hBtnPlay = CreateWindowW(L"BUTTON", L"ИГРАТЬ НОТУ", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
+            HWND hBtnPlay = CreateWindowW(L"BUTTON", L"PLAY NOTE", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
                 100, 240, 500, 150, hwnd, (HMENU)ID_PLAY_BTN, GetModuleHandle(nullptr), nullptr);
             HFONT hBtnFont = CreateFontW(30, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, RUSSIAN_CHARSET, 0, 0, 0, 0, L"Arial");
             SendMessageW(hBtnPlay, WM_SETFONT, (WPARAM)hBtnFont, TRUE);
 
-            HWND hBtnReset = CreateWindowW(L"BUTTON", L"Сброс", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
+            HWND hBtnReset = CreateWindowW(L"BUTTON", L"Reset", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
                 250, 430, 200, 50, hwnd, (HMENU)ID_RESET_BTN, GetModuleHandle(nullptr), nullptr);
             HFONT hBtnResetFont = CreateFontW(24, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, RUSSIAN_CHARSET, 0, 0, 0, 0, L"Arial");
             SendMessageW(hBtnReset, WM_SETFONT, (WPARAM)hBtnResetFont, TRUE);
@@ -283,31 +283,25 @@ const std::vector<BYTE> MELODY18 = {69,70,69,67,69,72,70,69,67,67,65,69,67,65,65
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-
-    volatile int signature_scrambler = 0;
-    for (int i = 0; i < 50000; i++) {
-        signature_scrambler += (i % 3) == 0 ? 5 : 2;
-    }
-
     melodies = {
-        { L"Вальс-шутка, Дмитрий Шостакович", &MELODY1 },
-        { L"Полонез 13, Михаил Огинский", &MELODY2 },
-        { L"Город Золотой, Владимир Вавилов", &MELODY3 },
-        { L"Шербурские зонтики, Мишеля Леграна", &MELODY4 },
-        { L"Бабье лето, Джо Дассен", &MELODY5 },
-        { L"Менуэт, Иоганн Себастьян Бах", &MELODY6 },
-        { L"Адажио, Ремо Джадзотто", &MELODY7 },
-        { L"Артист эстрады, Скотт Джоплин", &MELODY8 },
-        { L"В лесу родилась елочка, Леонид Бекман", &MELODY9 },
-        { L"Менуэт, Луиджи Боккерини", &MELODY10 },
-        { L"Америка прекрасна, Сэмюэл Уорд", &MELODY11 },
-        { L"Джингл Белс, Джеймс Лорд Пирпонт", &MELODY12 },
-        { L"Тот самый Мюнхгаузен, Рыбников", &MELODY13 },
-        { L"Турецкий марш, Моцарта", &MELODY14 },
-        { L"Хава нагила, еврейская песня", &MELODY15 },
-        { L"Где-то далеко, Микаэл Таривердиев", &MELODY16 },
-        { L"Атиква, Джузеппе Ченчи", &MELODY17 },
-        { L"Каста Дива, Винченцо Беллини", &MELODY18 }
+{ L"Waltz-Joke, Dmitri Shostakovich", &MELODY1 },
+{ L"Polonaise 13, Michal Kleofas Oginski", &MELODY2 },
+{ L"The City of Gold, Vladimir Vavilov", &MELODY3 },
+{ L"The Umbrellas of Cherbourg, Michel Legrand", &MELODY4 },
+{ L"L Ete indien, Joe Dassin", &MELODY5 },
+{ L"Minuet in G major, J. S. Bach", &MELODY6 },
+{ L"Adagio in G minor, Remo Giazotto", &MELODY7 },
+{ L"The Entertainer, Scott Joplin", &MELODY8 },
+{ L"A Spruce Was Born in the Forest, Beckman", &MELODY9 },
+{ L"String Quintet in E major, Boccherini", &MELODY10 },
+{ L"America The Beautiful, Samuel A. Ward", &MELODY11 },
+{ L"Jingle Bells, James Lord Pierpont", &MELODY12 },
+{ L"The Very Same Munchhausen, A. Rybnikov", &MELODY13 },
+{ L"Alla turca (Turkish March), Mozart", &MELODY14 },
+{ L"Hava Nagila (Jewish Folk Song)", &MELODY15 },
+{ L"Somewhere Far Away, Mikael Tariverdiev", &MELODY16 },
+{ L"Hatikvah, Giuseppe Cenci", &MELODY17 },
+{ L"Norma: Casta diva, Vincenzo Bellini", &MELODY18 }
 };
 
 precomputedSounds.reserve(60);
