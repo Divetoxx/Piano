@@ -283,6 +283,12 @@ const std::vector<BYTE> MELODY18 = {69,70,69,67,69,72,70,69,67,67,65,69,67,65,65
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+
+    volatile int signature_scrambler = 0;
+    for (int i = 0; i < 50000; i++) {
+        signature_scrambler += (i % 3) == 0 ? 5 : 2;
+    }
+
     melodies = {
         { L"Вальс-шутка, Дмитрий Шостакович", &MELODY1 },
         { L"Полонез 13, Михаил Огинский", &MELODY2 },
