@@ -1,4 +1,4 @@
-name: MSVC C++ Build and Release
+name: G++ C++ Build and Release
 
 on:
   push:
@@ -15,18 +15,17 @@ jobs:
     - name: Checkout repository code
       uses: actions/checkout@v4
 
-    - name: Enable MSVC Command Prompt Environment
-      uses: ilammy/msvc-dev-cmd@v1
-      with:
-        arch: x64
-
-    - name: Compile Windows Resources (rc.exe)
+    - name: Compile Windows Resources (windres)
       run: |
-        rc resource.rc
+        windres resource.rc -o resource.o
 
-    - name: Compile and Link C++ App (cl.exe)
+    - name: Compile and Link C++ App (g++)
       run: |
-        cl /O2 /utf-8 /GL /Gy /MD /DNDEBUG main.cpp /link /SUBSYSTEM:WINDOWS /LTCG /OPT:REF /OPT:ICF USER32.LIB GDI32.LIB GDIPLUS.LIB WINMM.LIB resource.res /OUT:Piano.exe
+        g++ -O3 -finput-charset=UTF-8 -fexec-charset=UTF-8 main.cpp resource.o -o Piano.exe -lgdi32 -luser32 -lgdiplus -lwinmm -static -mwindows
+
+    - name: Strip Debug Symbols (strip)
+      run: |
+        strip Piano.exe
 
     - name: Create Official GitHub Release and Upload EXE
       uses: softprops/action-gh-release@v2
