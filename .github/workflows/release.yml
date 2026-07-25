@@ -21,7 +21,7 @@ jobs:
 
     - name: Compile and Link C++ App (g++)
       run: |
-        "g++ -O3 -finput-charset=UTF-8 -fexec-charset=UTF-8 main.cpp resource.o -o Piano.exe -lgdi32 -luser32 -lgdiplus -lwinmm -static -mwindows -Wl,--file-alignment=0x1000 -Wl,--section-alignment=0x1000"
+        & g++ -O3 -finput-charset=UTF-8 -fexec-charset=UTF-8 main.cpp resource.o -o Piano.exe -lgdi32 -luser32 -lgdiplus -lwinmm -static -mwindows "-Wl,--file-alignment=0x1000" "-Wl,--section-alignment=0x1000"
 
     - name: Strip Debug Symbols (strip)
       run: |
