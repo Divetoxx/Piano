@@ -35,8 +35,7 @@ jobs:
         tag_name: ${{ github.ref }}
         files: Piano.exe
         body: |
-          <img src="Piano.png" width="702>
-
+          <img src="Piano.png" width="702">
           # 🎹 Piano MIDI Synthesizer & Player
           Welcome to the official release of **Piano** — a lightweight, standalone virtual piano and audio synthesizer for Windows.
           
