@@ -24,8 +24,8 @@ The application supports on-the-fly UI localization. Clicking any flag dynamical
 10. **🇵🇹 Portuguese (POR)** — Extended Western Iberian and Brazilian localization.
 11. **🇹🇷 Turkish (TUR)** — Complete native translation for Near Eastern region.
 12. **🇮🇩 Indonesian (IDN)** — Full standard Southeast Asian Austronesian localization.
-13. **🇪🇬 Arabic (EGY)** — Native Right-to-Left (RTL) directional text alignment.
-14. **🇮🇱 Hebrew (ISR)** — High-precision Right-to-Left (RTL) cultural representation.
+13. **🇪🇬 Arabic (EGY)** — Full UTF-16 text localization support.
+14. **🇮🇱 Hebrew (ISR)** — Extended native character translation support.
 
 ## 🎼 Built-in Compositions (18 Iconic Melodies):
 The synthesizer includes a carefully selected list of international masterpieces, folk tracks, and cinematographic themes pre-computed into highly dense note vectors:
