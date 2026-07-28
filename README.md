@@ -1,4 +1,5 @@
-<img src="Piano.png" width="701">
+<img src="Piano.png" width="702">
+
 # 🎹 Piano MIDI Synthesizer & Player
 Welcome to the official release of **Piano** — a lightweight, standalone virtual piano and audio synthesizer for Windows.
           
