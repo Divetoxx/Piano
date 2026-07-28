@@ -27,12 +27,13 @@ jobs:
       run: |
         strip Piano.exe
 
-    - name: Create Official GitHub Release and Upload EXE
+    - name: Create Official GitHub Release and Upload Assets
       uses: softprops/action-gh-release@v2
       with:
         token: ${{ secrets.MY_RELEASE_PAT }}
         name: Piano ${{ github.ref_name }}
         tag_name: ${{ github.ref }}
+        files: Piano.exe
         body: |
           <img src="Piano.png" width="702>
 
