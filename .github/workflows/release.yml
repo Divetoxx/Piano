@@ -30,26 +30,20 @@ jobs:
     - name: Create Official GitHub Release and Upload EXE
       uses: softprops/action-gh-release@v2
       with:
-        files: |
-          Piano.exe
-          Piano.png
-        name: Piano ${{ github.ref_name }} # ИСПРАВЛЕНО: Теперь релиз гордо называется Piano!
+        files: Piano.exe
+        name: Piano ${{ github.ref_name }}
         tag_name: ${{ github.ref }}
         body: |
-          ## 🎹 Piano MIDI Synthesizer & Player
+          <img src="Piano.png" width="701">
+          # 🎹 Piano MIDI Synthesizer & Player
           Welcome to the official release of **Piano** — a lightweight, standalone virtual piano and audio synthesizer for Windows.
           
-          ### 🚀 Features in this release:
-          * **International Support:** Multi-language interface with 14 languages selectable on-the-fly (including custom GDI+ vector flags, full Right-to-Left RTL alignment for Arabic and Hebrew).
-          * **Advanced Polyphony Engine:** Custom 5-voice sound generation with rich sub-bass layers and harmonic overtones up to index 100 (high-frequency crystal registers without crash risk).
+          ## 🚀 Features in this release:
+          * **International Support:** Multi-language interface with 14 languages selectable on-the-fly (including custom GDI+ vector flags).
           * **Classic Masterpieces Built-in:** Includes 18 iconic melodies (Shostakovich, Mozart, Bach, Rybnikov's "Munchhausen", Legrand's "The Umbrellas of Cherbourg", and more).
-          * **Zero-Detections Immunity:** Compiled with deterministic binary structures and strict section alignment to ensure 100% clean status across all major antiviruses.
           
-          ### 🎮 How to control:
+          ## 🎮 How to control:
           * Use the **LEFT mouse button** to switch vector flags and browse melodies.
-          * Press the **SPACE bar** on your keyboard or click the big **PLAY NOTE** button to step through the notes.
-          
-          ---
-          *Developed as an ultra-clean, high-performance Win32 API and GDI+ project.*
+          * The big PLAY NOTE button can be triggered by either clicking your LEFT mouse button or pressing the SPACE bar.
       env:
         GITHUB_TOKEN: ${{ secrets.MY_RELEASE_PAT }}
