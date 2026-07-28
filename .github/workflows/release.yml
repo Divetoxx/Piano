@@ -30,11 +30,11 @@ jobs:
     - name: Create Official GitHub Release and Upload EXE
       uses: softprops/action-gh-release@v2
       with:
-        files: Piano.exe
+        token: ${{ secrets.MY_RELEASE_PAT }}
         name: Piano ${{ github.ref_name }}
         tag_name: ${{ github.ref }}
         body: |
-          <img src="Piano.png" width="701">
+          <img src="Piano.png" width="702>
 
           # 🎹 Piano MIDI Synthesizer & Player
           Welcome to the official release of **Piano** — a lightweight, standalone virtual piano and audio synthesizer for Windows.
@@ -46,5 +46,3 @@ jobs:
           ## 🎮 How to control:
           * Use the **LEFT mouse button** to switch vector flags and browse melodies.
           * The big PLAY NOTE button can be triggered by either clicking your LEFT mouse button or pressing the SPACE bar.
-      env:
-        GITHUB_TOKEN: ${{ secrets.MY_RELEASE_PAT }}
