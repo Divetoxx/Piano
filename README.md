@@ -6,7 +6,14 @@ Welcome to the official repository of **Piano** — a lightweight, high-performa
 ## 🎮 How to control:
 * Use the **LEFT mouse button** to switch vector flags and browse melodies.
 * The big PLAY NOTE button can be triggered by either clicking your LEFT mouse button or pressing the SPACE bar.
-          
+
+### 🎹 The Core Philosophy: "Zero-Mistake Rhythm Conducting"
+The main innovation of this Piano is that the user **never has to worry about playing the wrong notes**. 
+* **Perfect Pitch (Hz):** Every single frequency and musical pitch is precisely pre-programmed into dense note vectors. It is mathematically **impossible to hit a wrong note or make a mistake!**
+* **Time is Yours:** The timing, spacing, and emotional tempo are completely unconstrained. By pressing the keyboard or mouse, **YOU create the rhythm and time layout** dynamically. 
+
+You don't just hit keys — you **conduct** the masterpiece!
+
 ## 🚀 Key Technical Features:
 * **Advanced 5-Voice Polyphony:** Built-in additive synthesizer generating standard frequency (`f1`), octaves (`f2`, `f3`), an organ-like fifth overtone (`f4 = f1 * 3`), and a thick sub-bass floor (`f_sub`).
 
