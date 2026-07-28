@@ -17,6 +17,13 @@ You don't just hit keys — you **conduct** the masterpiece!
 ## 🚀 Key Technical Features:
 * **Advanced 5-Voice Polyphony:** Built-in additive synthesizer generating standard frequency (`f1`), octaves (`f2`, `f3`), an organ-like fifth overtone (`f4 = f1 * 3`), and a thick sub-bass floor (`f_sub`).
 
+## 🎧 Crucial Audio Notice: Use Headphones for Zero Latency!
+For the absolute best interactive conducting experience, **we highly recommend using wired headphones** instead of desktop speakers.
+* **The Latency Problem:** Many modern active desktop speakers (like *Edifier* stereo pairs or soundbars) contain built-in digital signal processors (DSP). Even when connected via an analog AUX/RCA cable, they re-digitize the audio stream, introducing a noticeable **hardware latency delay** of 30-80ms. This completely ruins the dynamic timing of your performance.
+* **The Zero-Delay Solution:** Standard wired headphones bypass any external digital chips, blasting the pre-computed synthesizer waves straight to your ears with **absolute zero latency** (speed-of-light analog output). 
+
+*If you must use speakers, ensure they are in a pure, non-DSP analog mode, or disable all "audio enhancements" inside your Windows playback properties.*
+
 ## 🌍 Supported International Languages (14 Regions):
 The application supports on-the-fly UI localization. Clicking any flag dynamically translates all prompts, control text, and song arrays:
 1. **🇷🇺 Russian (RUS)** — Native localization for Cyrillic users.
