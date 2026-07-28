@@ -30,40 +30,26 @@ const std::vector<BYTE> MELODY18 = {69,70,69,67,69,72,70,69,67,67,65,69,67,65,65
 
 
 struct LanguageInterface {
-    const wchar_t* selectLbl;  // "Выберите мелодию:"
-    const wchar_t* hintLbl;    // "Подсказка: жмите ПРОБЕЛ"
-    const wchar_t* playBtn;    // "ИГРАТЬ НОТУ"
-    const wchar_t* resetBtn;   // "Сброс"
+    const wchar_t* selectLbl;
+    const wchar_t* hintLbl;
+    const wchar_t* playBtn;
+    const wchar_t* resetBtn;
 };
 
 const LanguageInterface LANGS[14] = {
-    // 0. 🇷🇺 Русский (Начинаем сразу с "Выберите мелодию")
     { L"Выберите мелодию:", L"ЛЕВАЯ мышь или ПРОБЕЛ на клавиатуре", L"ИГРАТЬ НОТУ", L"Сброс" },
-    // 1. 🇺🇸 Английский (Стартовый международный!)
     { L"Melodies:", L"LEFT mouse or SPACE on keyboard", L"PLAY NOTE", L"Reset" },
-    // 2. 🇪🇸 Испанский
     { L"Seleccionar melodía:", L"Ratón IZQUIERDO o ESPACIO en el teclado", L"TOCAR NOTA", L"Reiniciar" },
-    // 3. 🇮🇹 Итальянский
     { L"Seleziona melodia:", L"Mouse SINISTRO o SPAZIO sulla tastiera", L"SUONA NOTA", L"Reimposta" },
-    // 4. 🇩🇪 Немецкий
     { L"Melodie auswählen:", L"LINKE Maustaste oder LEERTASTE auf der Tastatur", L"NOTE SPIELEN", L"Zurücksetzen" },
-    // 5. 🇫🇷 Французский
     { L"Choisir une mélodie:", L"Souris GAUCHE ou ESPACE au clavier", L"JOUER LA NOTE", L"Réinitialiser" },
-    // 6. 🇯🇵 Японский
     { L"メロディを選択:", L"左マウスまたはキーボードのスペースキー", L"音符を再生", L"リセット" },
-    // 7. 🇨🇳 Китайский
     { L"选择旋律:", L"鼠标左键或键盘空格键", L"演奏音符", L"重置" },
-    // 8. 🇮🇳 Индийский (Хинди)
     { L"धुन चुनें:", L"बायां माउस या कीボード पर स्पेस", L"नोट बजाएं", L"रीसेट" },
-    // 9. 🇵🇹 Португалия
     { L"Selecionar melodia:", L"Mouse ESQUERDO ou ESPAÇO no teclado", L"TOCAR NOTA", L"Resetar" },
-    // 10. 🇹🇷 Турция
     { L"Melodi seçin:", L"SOL fare veya klavyede BOŞLUK", L"NOTAYI ÇAL", L"Sıfırla" },
-    // 11. 🇮🇩 Индонезия
     { L"Pilih melodi:", L"Mouse KIRI atau SPASI di keyboard", L"MAINKAN NADA", L"Reset" },
-    // 12. 🇪🇬 Египет
     { L"اختر اللحن:", L"الماوس الأيسر أو المسافة на клавиатуре", L"عزف النوتة", L"إعادة تعيين" },
-    // 13. 🇮🇱 Израиль
     { L"בחר מנגינה:", L"עכבר שמאלי או רווח במקלדת", L"נגן תו", L"איפוס" }
 };
 
@@ -75,7 +61,7 @@ struct MultiLangMelody {
 };
 
 std::vector<MultiLangMelody> multilang_melodies = {
-    // 1. Шостакович
+
     {{ 
         L"Вальс-шутка, Дмитрий Шостакович", L"Waltz-Joke, Dmitri Shostakovich", 
         L"Vals-Broma, Dmitri Shostakóvich", L"Valzer-Scherzo, Dmitrij Šostakovič", 
@@ -85,7 +71,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"1. فالس المزحة، ديمتري شوستاكوفيتش", L"1 .ואלס הבדיחה, דמיטרי שוסטקוביץ'"
     }, &MELODY1},
 
-    // 2. Огинский
+
     {{ 
         L"Полонез 13, Михаил Огинский", L"Polonaise 13, Michal Kleofas Oginski", 
         L"Polonesa 13, Michał Kleofas Ogiński", L"Polacca 13, Michał Kleofas Ogiński", 
@@ -95,7 +81,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"2. بولونيز 13، ميخال أوغينسكي", L"2. פולונז 13, מיכאל אוגינסקי"
     }, &MELODY2},
 
-    // 3. Вавилов (Город Золотой)
+
     {{ 
         L"Город Золотой, Владимир Вавилов", L"The City of Gold, Vladimir Vavilov", 
         L"La Ciudad de Oro, Vladimir Vavilov", L"La Città d'Oro, Vladimir Vavilov", 
@@ -105,7 +91,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"3. المدينة الذهبية، فلاديمير فافيلوف", L"3. עיר הזהב, ולדימיר ואווילוב"
     }, &MELODY3},
 
-    // 4. Легран (Шербурские зонтики)
+
     {{ 
         L"Шербурские зонтики, Мишель Легран", L"The Umbrellas of Cherbourg, Michel Legrand", 
         L"Los Paraguas de Cherburgo, Michel Legrand", L"I Ombrelli di Cherbourg, Michel Legrand", 
@@ -115,7 +101,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"4. مظلات شيربورغ، ميشيل ليغراند", L"4. מטריות שרבורג, מישל לגראן"
     }, &MELODY4},
 
-    // 5. Джо Дассен
+
     {{ 
         L"Бабье лето, Джо Дассен", L"L'Ete indien, Joe Dassin", 
         L"El verano indio, Joe Dassin", L"L'Estate indiana, Joe Dassin", 
@@ -125,7 +111,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"5. الصيف الهندي، جو داسين", L"5. הקיץ האינדיאני, ג'ו דאסן"
     }, &MELODY5},
 
-    // 6. Бах (Менуэт)
+
     {{ 
         L"Менуэт, Иоганн Себастьян Бах", L"Minuet in G major, J. S. Bach", 
         L"Minueto en sol mayor, J. S. Bach", L"Minuetto in sol maggiore, J. S. Bach", 
@@ -135,7 +121,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"6. مِنْوِيت في جي كبير، يوهان باخ", L"6. מנואט בסול מז'ור, י. ס. באך"
     }, &MELODY6},
 
-    // 7. Джадзотто (Адажио)
+
     {{ 
         L"Адажио, Ремо Джадзотто", L"Adagio in G minor, Remo Giazotto", 
         L"Adagio en sol menor, Remo Giazotto", L"Adagio in sol minore, Remo Giazotto", 
@@ -145,7 +131,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"7. أداجيو في جي صغير، ريمو جيازوتو", L"7. אדאג'ו בסול מינור, רמו ג'אזוטו"
     }, &MELODY7},
 
-    // 8. Скотт Джоплин
+
     {{ 
         L"Артист эстрады, Скотт Джоплин", L"The Entertainer, Scott Joplin", 
         L"El Animador, Scott Joplin", L"L'In intrattenitore, Scott Joplin", 
@@ -155,7 +141,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"8. المطرب، سكوت جوبلين", L"8. הבדרן, סקוט ג'ופלין"
     }, &MELODY8},
 
-    // 9. Елочка
+
     {{ 
         L"В лесу родилась елочка, Л. Бекман", L"A Spruce Was Born in the Forest, L. Beckman", 
         L"Un Abeto Nació en el Bosque, L. Beckman", L"Un Abete è Nato nel Bosco, L. Beckman", 
@@ -165,7 +151,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"9. ولدت شجرة تنوب في الغابة، ل. بيكمان", L"9. עץ אשוח נולד ביער, ל. בקמן"
     }, &MELODY9},
 
-    // 10. Боккерини (Менуэт)
+
     {{ 
         L"Менуэт, Луиджи Боккерини", L"String Quintet in E major, L. Boccherini", 
         L"Quinteto de cuerda en mi mayor, Boccherini", L"Quintetto d'archi in mi maggiore, Boccherini", 
@@ -175,7 +161,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"10. خماسية وتارية في إي كبير، بوكريني", L"10. חמישיית כלי מיתר במי מז'ור, בוקריני"
     }, &MELODY10},
 
-    // 11. Сэмюэл Уорд
+
     {{ 
         L"Америка прекрасна, Сэмюэл Уорд", L"America The Beautiful, Samuel A. Ward", 
         L"América la Bella, Samuel A. Ward", L"America la Bella, Samuel A. Ward", 
@@ -185,7 +171,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"11. أمريكا الجميلة، صموئيل وارد", L"11. אמריקה היפה, סמואל א. וורד"
     }, &MELODY11},
 
-    // 12. Джеймс Пирпонт (Jingle Bells)
+
     {{ 
         L"Джингл Белс, Джеймс Лорд Пирпонт", L"Jingle Bells, James Lord Pierpont", 
         L"Cascabeles, James Lord Pierpont", L"Campane di Natale, James Lord Pierpont", 
@@ -195,7 +181,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"12. جنجل بيلز، جيمس لورد بيربونت", L"12. ג'ינגל בלס, ג'ייмс לורד פיירפונט"
     }, &MELODY12},
 
-    // 13. Рыбников (Мюнхгаузен)
+
     {{ 
         L"Тот самый Мюнхгаузен, А. Рыбников", L"The Very Same Munchhausen, A. Rybnikov", 
         L"El mismísimo Münchhausen, A. Rýbnikov", L"Il vero Barone di Münchhausen, A. Rybnikov", 
@@ -205,7 +191,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"13. ذلك الميونخهاوزن نفسه، أ. ريبنيكوف", L"13. אותו מינכהאוזן, א. ריבניקוב"
     }, &MELODY13},
 
-    // 14. Моцарт (Турецкий марш)
+
     {{ 
         L"Турецкий марш, В. А. Моцарт", L"Alla turca (Turkish March), W. A. Mozart", 
         L"Marcha Turca, W. A. Mozart", L"Marcia Turca, W. A. Mozart", 
@@ -215,7 +201,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"14. المارش التركي، و. أ. موزارت", L"14. המצעד הטורקי, ו. א. מוצרט"
     }, &MELODY14},
 
-    // 15. Хава Нагила
+
     {{ 
         L"Хава нагила, еврейская песня", L"Hava Nagila (Jewish Folk Song)", 
         L"Hava Nagila (Canción folclórica judía)", L"Hava Nagila (Canto popolare ebraico)", 
@@ -225,7 +211,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"15. هافا ناجيلا (أغنية شعبية يهودية)", L"15. הבה נגילה (שיר עם יהודי)"
     }, &MELODY15},
 
-    // 16. Таривердиев (Где-то далеко)
+
     {{ 
         L"Где-то далеко, Микаэл Таривердиев", L"Somewhere Far Away, Mikael Tariverdiev", 
         L"En algún lugar lejano, Mikael Tariverdiev", L"Da qualche parte lontano, M. Tariverdiev", 
@@ -235,7 +221,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"16. في مكان ما بعيداً، ميكائيل تاريفيرديف", L"16. אי שם רחוק, מיכאל טאריברדייב"
     }, &MELODY16},
 
-    // 17. Атиква
+
     {{ 
         L"Атиква, Джузеппе Ченчи", L"Hatikvah, Giuseppe Cenci", 
         L"Hatikvah, Giuseppe Cenci", L"Hatikvah, Giuseppe Cenci", 
@@ -245,7 +231,7 @@ std::vector<MultiLangMelody> multilang_melodies = {
         L"17. هاتيكفاه، جوزيبي سينشي", L"17. התקווה, ג'וזפה סנצ'י"
     }, &MELODY17},
 
-    // 18. Беллини (Каста Дива)
+
     {{ 
         L"Каста Дива, Винченцо Беллини", L"Norma: Casta diva, Vincenzo Bellini", 
         L"Casta Diva (Norma), Vincenzo Bellini", L"Casta Diva (Norma), Vincenzo Bellini", 
@@ -390,7 +376,6 @@ void AddNoteToMixer(int soundIdx) {
 }
 
 void PlayNext() {
-    // ИСПРАВЛЕНО: Теперь используем новые мультиязычные имена!
     if (multilang_melodies[selectedIdx].melodyData == nullptr) return;
     const std::vector<BYTE>& melody = *(multilang_melodies[selectedIdx].melodyData);
     
@@ -435,49 +420,29 @@ void RenderUI(HWND hwnd, HDC hdc) {
     Gdiplus::FontFamily fontFamily(L"Arial");
     Gdiplus::StringFormat centerFormat;
 
-    // ИСПРАВЛЕНО: Никаких сдвигов вправо! Все 14 языков мира центрируются идеально ровно
     centerFormat.SetAlignment(Gdiplus::StringAlignmentCenter);
     centerFormat.SetFormatFlags(0);
     centerFormat.SetLineAlignment(Gdiplus::StringAlignmentCenter);
 
-    
-    // ==========================================
-    // НАСТОЯЩИЙ ВЕКТОРНЫЙ РОЯЛЬ ИЗ ЮНИКОДА (🎹)
-    // ==========================================
-    // Используем специальный шрифт Segoe UI Symbol, где этот рояль прорисован идеально
     Gdiplus::FontFamily pianoFamily(L"Segoe UI Symbol");
-    
-    // Делаем его огромным и сочным — 72 пикселя!
     Gdiplus::Font pianoFont(&pianoFamily, 72.0f, Gdiplus::FontStyleRegular, Gdiplus::UnitPixel);
-    
-    // Задаем прямоугольник строго по центру в самом верху окна (Y=10)
     Gdiplus::RectF pianoRect(0.0f, 10.0f, 700.0f, 90.0f);
-    
-    // Заливаем его нашим любимым сочным красным цветом
     Gdiplus::SolidBrush pianoBrush(Gdiplus::Color(255, 100, 0, 0));
-    
-    // Магический код суррогатной пары для символа 🎹 (Piano) в UTF-16
     const wchar_t* pianoIcon = L"\xD83C\xDFB9";
-    
-    // Рисуем идеально сглаженный силуэт рояля ровно по центру!
     graphics.DrawString(pianoIcon, -1, &pianoFont, pianoRect, &centerFormat, &pianoBrush);
-    // ==========================================
-    
-    // 2. ВЕКТОРНАЯ ОТРИСОВКА НАСТОЯЩИХ ЦВЕТНЫХ ФЛАГОВ
+
     Gdiplus::Font codeFont(&fontFamily, 12.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
 
     for (int i = 0; i < 14; ++i) {
-        float x = 30.0f;          // Все флаги стоят ровно по левому краю на X=30
-        float y = 90.0f + (i * 46.0f); // Опускаются вниз: 90, 136, 182...
+        float x = 30.0f;
+        float y = 90.0f + (i * 46.0f);
         float w = 60.0f;
         float h = 36.0f;
         float h3 = h / 3.0f;
 
-        // Рисуем рамку-подсветку вокруг всего флага (синяя для выбранного)
         Gdiplus::Pen borderPen((i == currentLang) ? Gdiplus::Color(255, 0, 120, 255) : Gdiplus::Color(255, 220, 220, 220), 2.0f);
         graphics.DrawRectangle(&borderPen, x - 2, y - 2, w + 4, h + 4);
 
-        // ... тут остаются ваши неизмененные блоки рисования (if (i == 0) Россия, США и т.д.) ...
         if (i == 0) {
             Gdiplus::SolidBrush red(Gdiplus::Color(255, 218, 41, 28));
             Gdiplus::SolidBrush blue(Gdiplus::Color(255, 0, 57, 166));
@@ -534,54 +499,47 @@ void RenderUI(HWND hwnd, HDC hdc) {
             graphics.FillRectangle(&green, x, y + h3 * 2, w, h3);
             graphics.FillEllipse(&navy, (float)(x + (w - 8.0f) / 2.0f), (float)(y + (h - 8.0f) / 2.0f + 1.0f), 8.0f, 8.0f);
         }
-        else if (i == 9) { // 🇵🇹 Португалия
+        else if (i == 9) {
             Gdiplus::SolidBrush green(0xFF006600), red(0xFFFF0000);
-            graphics.FillRectangle(&green, x, y, w * 0.4f, h); // Зелёная левая часть
-            graphics.FillRectangle(&red, x + w * 0.4f, y, w * 0.6f, h); // Красная правая часть
-            // Упрощённый герб (жёлтая сфера в центре стыка)
+            graphics.FillRectangle(&green, x, y, w * 0.4f, h);
+            graphics.FillRectangle(&red, x + w * 0.4f, y, w * 0.6f, h);
             Gdiplus::SolidBrush gold(0xFFFFCC00);
             graphics.FillEllipse(&gold, (float)(x + w * 0.4f - 6.0f), (float)(y + (h - 12.0f) / 2.0f), 12.0f, 12.0f);
         }
-        else if (i == 10) { // 🇹🇷 Турция
+        else if (i == 10) {
             Gdiplus::SolidBrush red(0xFFE30A17), white(0xFFFFFFFF);
             graphics.FillRectangle(&red, x, y, w, h);
-            // Полумесяц и звезда вектором
             graphics.FillEllipse(&white, x + 14.0f, y + 8.0f, 20.0f, 20.0f);
-            graphics.FillEllipse(&red, x + 19.0f, y + 8.0f, 20.0f, 20.0f); // Вырезаем круг фоном
-            graphics.FillEllipse(&white, x + 33.0f, y + 15.0f, 6.0f, 6.0f); // Маленькая звезда
+            graphics.FillEllipse(&red, x + 19.0f, y + 8.0f, 20.0f, 20.0f);
+            graphics.FillEllipse(&white, x + 33.0f, y + 15.0f, 6.0f, 6.0f);
         }
-        else if (i == 11) { // 🇮🇩 Индонезия
+        else if (i == 11) {
             Gdiplus::SolidBrush red(0xFFFF0000);
             graphics.FillRectangle(&red, x, y, w, h / 2.0f);
             graphics.FillRectangle(&whiteBrush, x, y + h / 2.0f, w, h / 2.0f);
         }
-        else if (i == 12) { // 🇪🇬 Египет
+        else if (i == 12) {
             Gdiplus::SolidBrush red(0xFFCE1126), black(0xFF000000), gold(0xFFC09300);
             graphics.FillRectangle(&red, x, y, w, h3);
             graphics.FillRectangle(&whiteBrush, x, y + h3, w, h3);
             graphics.FillRectangle(&black, x, y + h3 * 2, w, h3);
-            // Орёл Саладина по центру
             graphics.FillEllipse(&gold, x + (w - 6.0f) / 2.0f, y + h3 + 3.0f, 6.0f, 6.0f);
         }
-        else if (i == 13) { // 🇮🇱 Израиль
+        else if (i == 13) {
             Gdiplus::SolidBrush blue(0xFF0038A8);
             graphics.FillRectangle(&whiteBrush, x, y, w, h);
-            graphics.FillRectangle(&blue, x, y + 3.0f, w, 4.0f);  // Верхняя полоса
-            graphics.FillRectangle(&blue, x, y + h - 7.0f, w, 4.0f); // Нижняя полоса
-            // Маген Давид (Упрощённый маркер центра)
+            graphics.FillRectangle(&blue, x, y + 3.0f, w, 4.0f);
+            graphics.FillRectangle(&blue, x, y + h - 7.0f, w, 4.0f);
             graphics.FillEllipse(&blue, x + (w - 10.0f) / 2.0f, y + (h - 10.0f) / 2.0f, 10.0f, 10.0f);
         }
     }
     
-    // 3. Надпись "Выберите мелодию:" строго по центру над списком ComboBox
     Gdiplus::Font subFont(&fontFamily, 24.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
-    Gdiplus::RectF subRect(125.0f, 100.0f, 450.0f, 40.0f); // X=125, ширина=450
+    Gdiplus::RectF subRect(125.0f, 100.0f, 450.0f, 40.0f);
     graphics.DrawString(LANGS[currentLang].selectLbl, -1, &subFont, subRect, &centerFormat, &darkBrush);
     
-    // 4. Подсказка "ЛЕВАЯ мышь или ПРОБЕЛ на клавиатуре"
     Gdiplus::Font hintFont(&fontFamily, 24.0f, Gdiplus::FontStyleItalic, Gdiplus::UnitPixel);
     
-    // ИСПРАВЛЕНО: Заменили высоту 40.0f на 80.0f, чтобы текст больше никогда не срезался!
     Gdiplus::RectF hintRect(125.0f, 650.0f, 450.0f, 80.0f); 
     
     graphics.DrawString(LANGS[currentLang].hintLbl, -1, &hintFont, hintRect, &centerFormat, &darkBrush);
@@ -609,13 +567,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             HFONT hBtnFont = CreateFontW(30, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, DEFAULT_CHARSET, 0, 0, 0, 0, L"Arial");
             SendMessageW(hBtnPlay, WM_SETFONT, (WPARAM)hBtnFont, TRUE);
 
-            // 3. Создаем кнопку Сброс
             hBtnReset = CreateWindowW(L"BUTTON", LANGS[currentLang].resetBtn, WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
                 250, 430, 200, 50, hwnd, (HMENU)ID_RESET_BTN, GetModuleHandle(nullptr), nullptr);
             HFONT hBtnResetFont = CreateFontW(24, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, 0, 0, 0, 0, L"Arial");
             SendMessageW(hBtnReset, WM_SETFONT, (WPARAM)hBtnResetFont, TRUE); 
 
-            // 4. Создаем 9 кнопок выбора языков прямо над меню
             HWND langButtons[9];
             HFONT hLangFont = CreateFontW(18, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, 0, 0, 0, 0, L"Segoe UI Emoji");
             
@@ -626,13 +582,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             int mouseX = LOWORD(lParam);
             int mouseY = HIWORD(lParam);
 
-            // Проверяем, попал ли клик в вертикальный столбец по ширине флагов (X от 28 до 92 пикселей)
             if (mouseX >= 28 && mouseX <= 92) {
                 for (int i = 0; i < 14; ++i) {
                     int startY = 90 + (i * 46);
-                    int endY = startY + 36; // 100% площади флага по высоте!
+                    int endY = startY + 36;
 
-                    // Если кликнули точно внутрь любой части флага
                     if (mouseY >= startY && mouseY <= endY) {
                         currentLang = i;
                         
@@ -666,18 +620,15 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             if (wmId == ID_PLAY_BTN) { PlayNext(); SetFocus(hwnd); }
             if (wmId == ID_RESET_BTN) { currentNoteIdx = 0; SetFocus(hwnd); }
 
-            // Переключение всех 14 языков мира
             if (wmId >= 2000 && wmId <= 2013) { 
                 currentLang = wmId - 2000;
 
-                // Очищаем и заново заполняем выпадающий список мелодий на новом языке
                 SendMessageW(hComboBox, CB_RESETCONTENT, 0, 0);
                 for (const auto& item : multilang_melodies) {
                     SendMessageW(hComboBox, CB_ADDSTRING, 0, (LPARAM)item.names[currentLang]);
                 }
                 SendMessageW(hComboBox, CB_SETCURSEL, selectedIdx, 0);
 
-                // Обновляем текст на кнопках ИГРАТЬ и СБРОС
                 SetWindowTextW(hBtnPlay, LANGS[currentLang].playBtn);
                 SetWindowTextW(hBtnReset, LANGS[currentLang].resetBtn);
 
