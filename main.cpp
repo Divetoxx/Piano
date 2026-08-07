@@ -677,6 +677,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+SetPriorityClass(GetCurrentProcess(), HIGH_PRIORITY_CLASS);
+SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_HIGHEST);
 
 precomputedSounds.reserve(60);
 for (BYTE midiNote = 40; midiNote < 100; ++midiNote) {
